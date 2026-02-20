@@ -14,92 +14,44 @@
             padding: 20px;
         }
         .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        h1 {
-            color: #2979FF;
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-        h2 {
-            color: #FFFFFF;
-            font-size: 20px;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 6px;
-        }
-        h3 {
-            color: #B0B0B0;
-            font-size: 16px;
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
+        h1 { color: #2979FF; font-size: 28px; margin-bottom: 8px; }
+        h2 { color: #FFFFFF; font-size: 20px; margin-top: 32px; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 6px; }
+        h3 { color: #B0B0B0; font-size: 16px; margin-top: 20px; margin-bottom: 8px; }
         p, li { font-size: 15px; margin-bottom: 10px; }
         ul { padding-left: 24px; margin-bottom: 12px; }
         a { color: #2979FF; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        .lang-switch {
-            text-align: right;
-            margin-bottom: 30px;
-        }
+        .lang-switch { text-align: right; margin-bottom: 30px; }
         .lang-switch a {
-            display: inline-block;
-            padding: 6px 16px;
-            border: 1px solid #2979FF;
-            border-radius: 6px;
-            margin-left: 8px;
-            font-size: 14px;
+            display: inline-block; padding: 6px 16px; border: 1px solid #2979FF;
+            border-radius: 6px; margin-left: 8px; font-size: 14px; color: #2979FF;
         }
-        .lang-switch a.active {
-            background: #2979FF;
-            color: #FFFFFF;
-        }
-        .placeholder {
-            background: #2C2C2C;
-            border: 1px dashed #FFC400;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: #FFC400;
-            font-family: monospace;
-            font-size: 13px;
-        }
-        .note {
-            background: #1E1E1E;
-            border-left: 3px solid #FFC400;
-            padding: 12px 16px;
-            margin: 20px 0;
-            border-radius: 0 6px 6px 0;
-            font-size: 14px;
-            color: #FFC400;
-        }
+        .lang-switch a.active { background: #2979FF; color: #FFFFFF; }
         .section-de, .section-en { display: none; }
         .section-de.active, .section-en.active { display: block; }
         .updated { color: #888; font-size: 13px; margin-bottom: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; font-size: 14px; }
     </style>
 </head>
 <body>
     <div class="container">
+        <a href="/" class="back-link">← Zurück zu YouHold</a>
         <div class="lang-switch">
             <a href="#" id="btn-de" class="active" onclick="switchLang('de')">🇩🇪 Deutsch</a>
             <a href="#" id="btn-en" onclick="switchLang('en')">🇬🇧 English</a>
         </div>
 
-        <div class="note">
-            ⚠️ Ersetze alle <span class="placeholder">[PLATZHALTER]</span> mit deinen echten Daten, bevor du diese Seite veröffentlichst. Lösche dann diesen Hinweis-Block.
-        </div>
-
-        <!-- ═══════════════════════════════════════ -->
         <!-- DEUTSCH -->
-        <!-- ═══════════════════════════════════════ -->
         <div class="section-de active" id="section-de">
             <h1>Datenschutzerklärung</h1>
-            <p class="updated">Zuletzt aktualisiert: <span class="placeholder">[DATUM]</span></p>
+            <p class="updated">Zuletzt aktualisiert: 20. Februar 2026</p>
 
             <h2>1. Verantwortlicher</h2>
             <p>
-                <span class="placeholder">[DEIN VOLLSTÄNDIGER NAME]</span><br>
-                <span class="placeholder">[DEINE STRASSE UND HAUSNUMMER]</span><br>
-                <span class="placeholder">[PLZ UND ORT]</span><br>
-                E-Mail: <span class="placeholder">[DEINE E-MAIL-ADRESSE]</span>
+                Wolfgang Krieger<br>
+                Kirchbuckweg 2<br>
+                91601 Dombühl<br>
+                E-Mail: youhold@gmx.de
             </p>
 
             <h2>2. Überblick</h2>
@@ -166,13 +118,13 @@
                 <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO) – Du kannst deine Daten in einem gängigen Format erhalten (CSV-Export ist in der App verfügbar).</li>
                 <li><strong>Widerspruch</strong> (Art. 21 DSGVO) – Du kannst der Verarbeitung deiner Daten widersprechen.</li>
             </ul>
-            <p>Zur Ausübung deiner Rechte kontaktiere: <span class="placeholder">[DEINE E-MAIL-ADRESSE]</span></p>
+            <p>Zur Ausübung deiner Rechte kontaktiere: youhold@gmx.de</p>
 
             <h2>9. Datenlöschung</h2>
             <p>Du kannst deine Daten jederzeit löschen:</p>
             <ul>
                 <li>Einzelne Einträge: Direkt in der App (Swipe-to-Delete)</li>
-                <li>Gesamtes Konto: Schreibe eine E-Mail an <span class="placeholder">[DEINE E-MAIL-ADRESSE]</span>. Dein Account und alle zugehörigen Daten werden innerhalb von 30 Tagen vollständig gelöscht.</li>
+                <li>Gesamtes Konto: Schreibe eine E-Mail an youhold@gmx.de. Dein Account und alle zugehörigen Daten werden innerhalb von 30 Tagen vollständig gelöscht.</li>
             </ul>
 
             <h2>10. Datensicherheit</h2>
@@ -189,22 +141,20 @@
 
             <h2>12. Kontakt</h2>
             <p>Bei Fragen zum Datenschutz erreichst du uns unter:<br>
-            <span class="placeholder">[DEINE E-MAIL-ADRESSE]</span></p>
+            youhold@gmx.de</p>
         </div>
 
-        <!-- ═══════════════════════════════════════ -->
         <!-- ENGLISH -->
-        <!-- ═══════════════════════════════════════ -->
         <div class="section-en" id="section-en">
             <h1>Privacy Policy</h1>
-            <p class="updated">Last updated: <span class="placeholder">[DATE]</span></p>
+            <p class="updated">Last updated: February 20, 2026</p>
 
             <h2>1. Data Controller</h2>
             <p>
-                <span class="placeholder">[YOUR FULL NAME]</span><br>
-                <span class="placeholder">[YOUR STREET AND NUMBER]</span><br>
-                <span class="placeholder">[POSTAL CODE AND CITY]</span><br>
-                Email: <span class="placeholder">[YOUR EMAIL ADDRESS]</span>
+                Wolfgang Krieger<br>
+                Kirchbuckweg 2<br>
+                91601 Dombühl, Germany<br>
+                Email: youhold@gmx.de
             </p>
 
             <h2>2. Overview</h2>
@@ -271,13 +221,13 @@
                 <li><strong>Data Portability</strong> (Art. 20 GDPR) – You can receive your data in a common format (CSV export is available in the app).</li>
                 <li><strong>Objection</strong> (Art. 21 GDPR) – You can object to the processing of your data.</li>
             </ul>
-            <p>To exercise your rights, contact: <span class="placeholder">[YOUR EMAIL ADDRESS]</span></p>
+            <p>To exercise your rights, contact: youhold@gmx.de</p>
 
             <h2>9. Data Deletion</h2>
             <p>You can delete your data at any time:</p>
             <ul>
                 <li>Individual entries: Directly in the app (swipe-to-delete)</li>
-                <li>Entire account: Send an email to <span class="placeholder">[YOUR EMAIL ADDRESS]</span>. Your account and all associated data will be completely deleted within 30 days.</li>
+                <li>Entire account: Send an email to youhold@gmx.de. Your account and all associated data will be completely deleted within 30 days.</li>
             </ul>
 
             <h2>10. Data Security</h2>
@@ -294,7 +244,7 @@
 
             <h2>12. Contact</h2>
             <p>For questions about data privacy, contact us at:<br>
-            <span class="placeholder">[YOUR EMAIL ADDRESS]</span></p>
+            youhold@gmx.de</p>
         </div>
     </div>
 
