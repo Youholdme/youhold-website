@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouHold – Dein Vermögen. Dein Überblick.</title>
+    <meta name="description" content="YouHold – Die persönliche Finanz-App für Bilanz, Cashflow und Budget. 4 Sprachen, 5 Währungen. Jetzt im App Store.">
+    <meta name="keywords" content="YouHold, Finanz-App, Vermögen, Bilanz, Cashflow, Budget, Haushaltsbuch, Net Worth Tracker">
+    <meta property="og:title" content="YouHold – Dein Vermögen. Dein Überblick.">
+    <meta property="og:description" content="Persönliche Bilanz, Cashflow-Tracking & Budget-Analyse – alles in einer App.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://youhold.de">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0A0A0F;
+            --bg-card: #14141F;
+            --bg-card-hover: #1A1A2A;
+            --bg-subtle: #0F0F18;
+            --blue: #2979FF;
+            --blue-glow: rgba(41, 121, 255, 0.15);
+            --blue-bright: #448AFF;
+            --green: #00E676;
+            --green-soft: rgba(0, 230, 118, 0.12);
+            --red: #FF5252;
+            --red-soft: rgba(255, 82, 82, 0.12);
+            --yellow: #FFC400;
+            --yellow-soft: rgba(255, 196, 0, 0.12);
+            --purple: #E040FB;
+            --text-primary: #F0F0F5;
+            --text-secondary: #8888A0;
+            --text-muted: #555568;
+            --border: rgba(255, 255, 255, 0.06);
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Ambient Background ── */
+        .ambient-glow {
+            position: fixed;
+            top: -30%;
+            left: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(ellipse, rgba(41, 121, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -15%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(ellipse, rgba(0, 230, 118, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .nav-logo span { color: var(--blue); }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-cta {
+            background: var(--blue) !important;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: all 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--blue-bright) !important; transform: translateY(-1px); }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+        }
+        .hero-content { max-width: 720px; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue-glow);
+            border: 1px solid rgba(41, 121, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--blue-bright);
+            font-weight: 500;
+            margin-bottom: 32px;
+            letter-spacing: 0.5px;
+        }
+        .hero-badge::before { content: "●"; font-size: 8px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--blue);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 24px rgba(41, 121, 255, 0.3);
+        }
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(41, 121, 255, 0.4);
+        }
+        .hero-cta svg { width: 20px; height: 20px; }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .number {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .hero-stat .label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Section Shared ── */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 40px;
+        }
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--blue);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .section-header h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ── Features Grid ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ── Balance Preview ── */
+        .balance-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .balance-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        .balance-text p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .balance-features { list-style: none; }
+        .balance-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+        .balance-features li .check {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--green-soft);
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* ── T-Konto Visual ── */
+        .tkonto-visual {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            font-family: var(--font-mono);
+        }
+        .tkonto-header {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .tkonto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .tkonto-side { padding: 16px; border-radius: 12px; }
+        .tkonto-aktiva { background: rgba(0, 230, 118, 0.06); border: 1px solid rgba(0, 230, 118, 0.12); }
+        .tkonto-passiva { background: rgba(255, 82, 82, 0.06); border: 1px solid rgba(255, 82, 82, 0.12); }
+        .tkonto-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .tkonto-aktiva .tkonto-label { color: var(--green); }
+        .tkonto-passiva .tkonto-label { color: var(--red); }
+        .tkonto-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .tkonto-row.total {
+            border-top: 1px solid var(--border);
+            margin-top: 8px;
+            padding-top: 10px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .tkonto-equity { color: var(--blue) !important; }
+        .tkonto-net {
+            text-align: center;
+            margin-top: 20px;
+            padding: 14px;
+            background: var(--blue-glow);
+            border: 1px solid rgba(41, 121, 255, 0.15);
+            border-radius: 10px;
+        }
+        .tkonto-net .label { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+        .tkonto-net .value { font-size: 22px; font-weight: 700; color: var(--blue-bright); margin-top: 4px; }
+
+        /* ── Languages/Currencies ── */
+        .multi-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .multi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .multi-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ── CTA Section ── */
+        .cta-section {
+            text-align: center;
+            padding: 80px 40px 120px;
+        }
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 36px;
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-left {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        /* ── Animations ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            nav { padding: 12px 20px; }
+            .nav-links { gap: 16px; }
+            .nav-links a:not(.nav-cta) { display: none; }
+            section { padding: 60px 20px; }
+            .hero { padding: 100px 20px 60px; }
+            .hero-stats { gap: 24px; flex-wrap: wrap; }
+            .balance-section { grid-template-columns: 1fr; }
+            .multi-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 16px; text-align: center; }
+        }
+
+        /* ── Hamburger for mobile ── */
+        .menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ambient-glow"></div>
+<div class="ambient-glow-2"></div>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav>
+    <a href="/" class="nav-logo">You<span>Hold</span></a>
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#bilanz">Bilanz</a>
+        <a href="#global">Sprachen</a>
+        <a href="#download" class="nav-cta">Download</a>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">Jetzt verfügbar für iOS</div>
+        <h1>Dein Vermögen.<br><span class="gradient-text">Dein Überblick.</span></h1>
+        <p>Persönliche Bilanz, Cashflow-Tracking und Budget-Analyse – alles in einer App. Sicher, übersichtlich und in deiner Sprache.</p>
+        <a href="https://apps.apple.com/app/youhold/id[DEINE-APP-ID]" class="hero-cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Store
+        </a>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="number">4</div>
+                <div class="label">Sprachen</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">5</div>
+                <div class="label">Währungen</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">∞</div>
+                <div class="label">Positionen</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+    <div class="section-header fade-in">
+        <div class="section-label">Features</div>
+        <h2>Alles was du brauchst</h2>
+        <p>YouHold vereint Bilanz, Cashflow und Budget-Analyse in einer einzigen, übersichtlichen App.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card fade-in">
+            <div class="feature-icon" style="background: var(--green-soft);">📊</div>
+            <h3>Persönliche Bilanz</h3>
+            <p>T-Konto-Format mit drei Detailstufen. Eigenkapital, Fremdkapital und Bilanzsumme werden automatisch berechnet.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon" style="background: var(--blue-glow);">💸</div>
+            <h3>Cashflow-Tracking</h3>
+            <p>Einnahmen und Ausgaben tracken mit Zeitfiltern. Daueraufträge verwalten und wiederkehrende Zahlungen im Blick behalten.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon" style="background: var(--yellow-soft);">🎯</div>
+            <h3>Budget-Analyse</h3>
+            <p>Monatliche Budgets pro Kategorie setzen. Donut-Charts, Trendvergleiche und Fortschrittsbalken zeigen, wo du stehst.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon" style="background: var(--red-soft);">📈</div>
+            <h3>Vermögensentwicklung</h3>
+            <p>Interaktive Charts zeigen die Wertentwicklung deiner Positionen und dein Nettovermögen über flexible Zeiträume.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon" style="background: rgba(224, 64, 251, 0.12);">🔒</div>
+            <h3>Sicher & Privat</h3>
+            <p>Biometrische Sperre, verschlüsselte Datenübertragung und Row Level Security. Deine Finanzdaten gehören nur dir.</p>
+        </div>
+        <div class="feature-card fade-in">
+            <div class="feature-icon" style="background: var(--green-soft);">📤</div>
+            <h3>CSV-Export</h3>
+            <p>Exportiere deine Transaktionen und Vermögenswerte als CSV-Datei – für Steuererklärung, Berater oder dein Archiv.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ BILANZ ═══ -->
+<section id="bilanz" style="background: var(--bg-subtle);">
+    <div class="balance-section">
+        <div class="balance-text fade-in">
+            <div class="section-label">Herzstück</div>
+            <h2>Deine persönliche Bilanz</h2>
+            <p>Sieh dein Vermögen wie ein Profi – im T-Konto-Format mit drei Detailstufen. Von der Grobansicht bis zu jedem einzelnen Posten.</p>
+            <ul class="balance-features">
+                <li><span class="check">✓</span> Grobansicht: Vermögen vs. Schulden auf einen Blick</li>
+                <li><span class="check">✓</span> Gruppenansicht: Aufgeteilt nach Asset-Typen</li>
+                <li><span class="check">✓</span> Detailansicht: Jede einzelne Position sichtbar</li>
+                <li><span class="check">✓</span> Eigenkapital wird automatisch berechnet</li>
+            </ul>
+        </div>
+        <div class="tkonto-visual fade-in">
+            <div class="tkonto-header">Bilanz</div>
+            <div class="tkonto-grid">
+                <div class="tkonto-side tkonto-aktiva">
+                    <div class="tkonto-label">Aktiva</div>
+                    <div class="tkonto-row"><span>Immobilien</span><span>285.000 €</span></div>
+                    <div class="tkonto-row"><span>Aktien & ETFs</span><span>42.500 €</span></div>
+                    <div class="tkonto-row"><span>Krypto</span><span>8.200 €</span></div>
+                    <div class="tkonto-row"><span>Tagesgeld</span><span>15.000 €</span></div>
+                    <div class="tkonto-row total"><span>Summe</span><span>350.700 €</span></div>
+                </div>
+                <div class="tkonto-side tkonto-passiva">
+                    <div class="tkonto-label">Passiva</div>
+                    <div class="tkonto-row"><span>Hypothek</span><span>195.000 €</span></div>
+                    <div class="tkonto-row"><span>Autokredit</span><span>12.300 €</span></div>
+                    <div class="tkonto-row" style="height: 24px;"></div>
+                    <div class="tkonto-row tkonto-equity"><span>Eigenkapital</span><span>143.400 €</span></div>
+                    <div class="tkonto-row total"><span>Summe</span><span>350.700 €</span></div>
+                </div>
+            </div>
+            <div class="tkonto-net">
+                <div class="label">Nettovermögen</div>
+                <div class="value">143.400 €</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ GLOBAL ═══ -->
+<section id="global">
+    <div class="section-header fade-in">
+        <div class="section-label">Global</div>
+        <h2>Deine Sprache. Deine Währung.</h2>
+        <p>YouHold passt sich an – mit 4 Sprachen und 5 Währungen.</p>
+    </div>
+    <div class="multi-grid fade-in">
+        <div class="multi-card">
+            <h3>🌍 Sprachen</h3>
+            <div class="pill-grid">
+                <span class="pill">🇩🇪 Deutsch</span>
+                <span class="pill">🇬🇧 English</span>
+                <span class="pill">🇪🇸 Español</span>
+                <span class="pill">🇫🇷 Français</span>
+            </div>
+        </div>
+        <div class="multi-card">
+            <h3>💱 Währungen</h3>
+            <div class="pill-grid">
+                <span class="pill">€ EUR</span>
+                <span class="pill">$ USD</span>
+                <span class="pill">£ GBP</span>
+                <span class="pill">CHF</span>
+                <span class="pill">¥ JPY</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="download" class="cta-section" style="background: var(--bg-subtle);">
+    <div class="fade-in">
+        <h2>Bereit für den <span class="gradient-text">Überblick</span>?</h2>
+        <p>Lade YouHold kostenlos herunter und behalte dein Vermögen im Blick.</p>
+        <a href="https://apps.apple.com/app/youhold/id[DEINE-APP-ID]" class="hero-cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Im App Store laden
+        </a>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="footer-left">© 2026 YouHold. Alle Rechte vorbehalten.</div>
+    <div class="footer-links">
+        <a href="/privacy.html">Datenschutz</a>
+        <a href="/impressum.html">Impressum</a>
+    </div>
+</footer>
+
+<!-- ═══ Scroll Animations ═══ -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
