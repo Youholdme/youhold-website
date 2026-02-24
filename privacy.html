@@ -26,63 +26,63 @@
         ul { padding-left: 24px; margin-bottom: 12px; }
         a { color: #2979FF; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        .lang-switch { text-align: right; margin-bottom: 30px; }
-        .lang-switch a {
-            display: inline-block; padding: 6px 16px; border: 1px solid #2979FF;
-            border-radius: 6px; margin-left: 8px; font-size: 14px; color: #2979FF;
-        }
-        .lang-switch a.active { background: #2979FF; color: #FFFFFF; }
-        .section-de, .section-en { display: none; }
-        .section-de.active, .section-en.active { display: block; }
+        .lang-switcher { display: flex; gap: 6px; align-items: center; justify-content: center; margin: 20px 0; }
+        .lang-btn { background: none; border: 1px solid transparent; cursor: pointer; font-size: 22px; padding: 4px 8px; border-radius: 6px; opacity: 0.5; transition: all 0.2s; line-height: 1; }
+        .lang-btn.active { opacity: 1; border-color: rgba(255,255,255,0.2); }
+        .lang-btn:hover { opacity: 1; }
+        .section-de, .section-en, .section-es, .section-fr { display: none; }
+        .section-de.active, .section-en.active, .section-es.active, .section-fr.active { display: block; }
         .updated { color: #888; font-size: 13px; margin-bottom: 30px; }
         .back-link { display: inline-block; margin-bottom: 20px; font-size: 14px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="/" class="back-link">← Zurück zu YouHold</a>
-        <div class="lang-switch">
-            <a href="#" id="btn-de" class="active" onclick="switchLang('de')">🇩🇪 Deutsch</a>
-            <a href="#" id="btn-en" onclick="switchLang('en')">🇬🇧 English</a>
+        <a href="/" class="back-link" id="back-link">&#8592; Zur&uuml;ck zu YouHold</a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="btn-de" onclick="switchLang('de')" title="Deutsch">&#127465;&#127466;</button>
+            <button class="lang-btn" id="btn-en" onclick="switchLang('en')" title="English">&#127468;&#127463;</button>
+            <button class="lang-btn" id="btn-es" onclick="switchLang('es')" title="Espa&ntilde;ol">&#127466;&#127480;</button>
+            <button class="lang-btn" id="btn-fr" onclick="switchLang('fr')" title="Fran&ccedil;ais">&#127467;&#127479;</button>
         </div>
 
         <!-- DEUTSCH -->
         <div class="section-de active" id="section-de">
-            <h1>Datenschutzerklärung</h1>
+            <h1>Datenschutzerkl&auml;rung</h1>
             <p class="updated">Zuletzt aktualisiert: 20. Februar 2026</p>
 
             <h2>1. Verantwortlicher</h2>
             <p>
                 Wolfgang Krieger<br>
                 Kirchbuckweg 2<br>
-                91601 Dombühl<br>
+                91601 Domb&uuml;hl<br>
                 E-Mail: youhold@gmx.de
             </p>
 
-            <h2>2. Überblick</h2>
-            <p>YouHold ist eine persönliche Finanz-App für iOS. Diese Datenschutzerklärung informiert dich darüber, welche Daten erhoben werden, wie sie verarbeitet werden und welche Rechte du hast.</p>
+            <h2>2. &Uuml;berblick</h2>
+            <p>YouHold ist eine pers&ouml;nliche Finanz-App f&uuml;r iOS. Diese Datenschutzerkl&auml;rung informiert dich dar&uuml;ber, welche Daten erhoben werden, wie sie verarbeitet werden und welche Rechte du hast.</p>
 
             <h2>3. Welche Daten wir erheben</h2>
 
             <h3>3.1 Kontodaten</h3>
-            <p>Bei der Registrierung wird deine E-Mail-Adresse und ein Passwort gespeichert. Diese werden für die Authentifizierung benötigt.</p>
+            <p>Bei der Registrierung wird deine E-Mail-Adresse und ein Passwort gespeichert. Diese werden f&uuml;r die Authentifizierung ben&ouml;tigt.</p>
 
             <h3>3.2 Nutzungsdaten (von dir eingegebene Daten)</h3>
             <ul>
-                <li>Vermögenswerte und Verbindlichkeiten (Name, Wert, Typ)</li>
+                <li>Verm&ouml;genswerte und Verbindlichkeiten (Name, Wert, Typ)</li>
                 <li>Transaktionen (Titel, Betrag, Kategorie, Datum)</li>
-                <li>Daueraufträge (Titel, Betrag, Intervall)</li>
+                <li>Dauerauftr&auml;ge (Titel, Betrag, Intervall)</li>
                 <li>Budgets (Kategorie, monatliches Limit)</li>
                 <li>Eigene Kategorien und Asset-Typen</li>
-                <li>Vermögensverlauf (tägliche Nettovermögenswerte)</li>
+                <li>Verm&ouml;gensverlauf (t&auml;gliche Nettoverm&ouml;genswerte)</li>
             </ul>
 
             <h3>3.3 Technische Daten</h3>
-            <p>Die App speichert lokal auf deinem Gerät:</p>
+            <p>Die App speichert lokal auf deinem Ger&auml;t:</p>
             <ul>
                 <li>Spracheinstellung</li>
-                <li>Währungseinstellung</li>
-                <li>Dark/Light Mode Präferenz</li>
+                <li>W&auml;hrungseinstellung</li>
+                <li>Dark/Light Mode Pr&auml;ferenz</li>
                 <li>Biometrie-Einstellung (aktiviert/deaktiviert)</li>
                 <li>Onboarding-Status</li>
             </ul>
@@ -97,52 +97,52 @@
             </ul>
 
             <h2>4. Wie und wo Daten gespeichert werden</h2>
-            <p>Deine Daten werden auf Servern von <strong>Supabase</strong> (Supabase Inc., USA) gespeichert. Das Supabase-Projekt für YouHold ist in der <strong>EU (Paris, Frankreich)</strong> gehostet. Die Daten verlassen somit den europäischen Wirtschaftsraum nicht.</p>
+            <p>Deine Daten werden auf Servern von <strong>Supabase</strong> (Supabase Inc., USA) gespeichert. Das Supabase-Projekt f&uuml;r YouHold ist in der <strong>EU (Paris, Frankreich)</strong> gehostet. Die Daten verlassen somit den europ&auml;ischen Wirtschaftsraum nicht.</p>
             <p>Supabase nutzt PostgreSQL-Datenbanken mit Row Level Security (RLS). Das bedeutet, dass jeder Nutzer nur auf seine eigenen Daten zugreifen kann.</p>
             <p>Weitere Informationen zur Datensicherheit bei Supabase: <a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></p>
 
             <h2>5. Authentifizierung</h2>
-            <p>Die Anmeldung erfolgt über Supabase Auth mit E-Mail und Passwort. Passwörter werden von Supabase gehasht gespeichert und sind weder für den App-Betreiber noch für Supabase im Klartext einsehbar.</p>
+            <p>Die Anmeldung erfolgt &uuml;ber Supabase Auth mit E-Mail und Passwort. Passw&ouml;rter werden von Supabase gehasht gespeichert und sind weder f&uuml;r den App-Betreiber noch f&uuml;r Supabase im Klartext einsehbar.</p>
 
             <h2>6. Biometrische Daten</h2>
-            <p>YouHold bietet optional eine biometrische Sperre (Face ID / Touch ID). Die biometrischen Daten selbst werden ausschließlich auf deinem Gerät verarbeitet und gespeichert – sie werden nicht an Server übertragen. Die App prüft lediglich über das Betriebssystem, ob die biometrische Authentifizierung erfolgreich war.</p>
+            <p>YouHold bietet optional eine biometrische Sperre (Face ID / Touch ID). Die biometrischen Daten selbst werden ausschlie&szlig;lich auf deinem Ger&auml;t verarbeitet und gespeichert &ndash; sie werden nicht an Server &uuml;bertragen. Die App pr&uuml;ft lediglich &uuml;ber das Betriebssystem, ob die biometrische Authentifizierung erfolgreich war.</p>
 
             <h2>7. Datenweitergabe an Dritte</h2>
-            <p>Deine Daten werden nicht an Dritte verkauft oder zu Werbezwecken weitergegeben. Eine Weitergabe erfolgt ausschließlich an:</p>
+            <p>Deine Daten werden nicht an Dritte verkauft oder zu Werbezwecken weitergegeben. Eine Weitergabe erfolgt ausschlie&szlig;lich an:</p>
             <ul>
-                <li><strong>Supabase Inc.</strong> – als Auftragsverarbeiter für die Datenspeicherung und Authentifizierung (Server in der EU)</li>
+                <li><strong>Supabase Inc.</strong> &ndash; als Auftragsverarbeiter f&uuml;r die Datenspeicherung und Authentifizierung (Server in der EU)</li>
             </ul>
 
             <h2>8. Deine Rechte (DSGVO)</h2>
-            <p>Du hast folgende Rechte bezüglich deiner personenbezogenen Daten:</p>
+            <p>Du hast folgende Rechte bez&uuml;glich deiner personenbezogenen Daten:</p>
             <ul>
-                <li><strong>Auskunft</strong> (Art. 15 DSGVO) – Du kannst Auskunft über deine gespeicherten Daten verlangen.</li>
-                <li><strong>Berichtigung</strong> (Art. 16 DSGVO) – Du kannst die Berichtigung unrichtiger Daten verlangen.</li>
-                <li><strong>Löschung</strong> (Art. 17 DSGVO) – Du kannst die Löschung deiner Daten verlangen.</li>
-                <li><strong>Einschränkung</strong> (Art. 18 DSGVO) – Du kannst die Einschränkung der Verarbeitung verlangen.</li>
-                <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO) – Du kannst deine Daten in einem gängigen Format erhalten (CSV-Export ist in der App verfügbar).</li>
-                <li><strong>Widerspruch</strong> (Art. 21 DSGVO) – Du kannst der Verarbeitung deiner Daten widersprechen.</li>
+                <li><strong>Auskunft</strong> (Art. 15 DSGVO) &ndash; Du kannst Auskunft &uuml;ber deine gespeicherten Daten verlangen.</li>
+                <li><strong>Berichtigung</strong> (Art. 16 DSGVO) &ndash; Du kannst die Berichtigung unrichtiger Daten verlangen.</li>
+                <li><strong>L&ouml;schung</strong> (Art. 17 DSGVO) &ndash; Du kannst die L&ouml;schung deiner Daten verlangen.</li>
+                <li><strong>Einschr&auml;nkung</strong> (Art. 18 DSGVO) &ndash; Du kannst die Einschr&auml;nkung der Verarbeitung verlangen.</li>
+                <li><strong>Daten&uuml;bertragbarkeit</strong> (Art. 20 DSGVO) &ndash; Du kannst deine Daten in einem g&auml;ngigen Format erhalten (CSV-Export ist in der App verf&uuml;gbar).</li>
+                <li><strong>Widerspruch</strong> (Art. 21 DSGVO) &ndash; Du kannst der Verarbeitung deiner Daten widersprechen.</li>
             </ul>
-            <p>Zur Ausübung deiner Rechte kontaktiere: youhold@gmx.de</p>
+            <p>Zur Aus&uuml;bung deiner Rechte kontaktiere: youhold@gmx.de</p>
 
-            <h2>9. Datenlöschung</h2>
-            <p>Du kannst deine Daten jederzeit löschen:</p>
+            <h2>9. Datenl&ouml;schung</h2>
+            <p>Du kannst deine Daten jederzeit l&ouml;schen:</p>
             <ul>
-                <li>Einzelne Einträge: Direkt in der App (Swipe-to-Delete)</li>
-                <li>Gesamtes Konto: Schreibe eine E-Mail an youhold@gmx.de. Dein Account und alle zugehörigen Daten werden innerhalb von 30 Tagen vollständig gelöscht.</li>
+                <li>Einzelne Eintr&auml;ge: Direkt in der App (Swipe-to-Delete)</li>
+                <li>Gesamtes Konto: Schreibe eine E-Mail an youhold@gmx.de. Dein Account und alle zugeh&ouml;rigen Daten werden innerhalb von 30 Tagen vollst&auml;ndig gel&ouml;scht.</li>
             </ul>
 
             <h2>10. Datensicherheit</h2>
-            <p>Wir setzen folgende Maßnahmen zum Schutz deiner Daten ein:</p>
+            <p>Wir setzen folgende Ma&szlig;nahmen zum Schutz deiner Daten ein:</p>
             <ul>
-                <li>Verschlüsselte Datenübertragung (HTTPS/TLS)</li>
+                <li>Verschl&uuml;sselte Daten&uuml;bertragung (HTTPS/TLS)</li>
                 <li>Row Level Security (RLS) in der Datenbank</li>
-                <li>Gehashte Passwörter</li>
+                <li>Gehashte Passw&ouml;rter</li>
                 <li>Optionale biometrische App-Sperre</li>
             </ul>
 
-            <h2>11. Änderungen</h2>
-            <p>Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren. Wesentliche Änderungen werden in der App kommuniziert.</p>
+            <h2>11. &Auml;nderungen</h2>
+            <p>Wir behalten uns vor, diese Datenschutzerkl&auml;rung bei Bedarf zu aktualisieren. Wesentliche &Auml;nderungen werden in der App kommuniziert.</p>
 
             <h2>12. Kontakt</h2>
             <p>Bei Fragen zum Datenschutz erreichst du uns unter:<br>
@@ -158,7 +158,7 @@
             <p>
                 Wolfgang Krieger<br>
                 Kirchbuckweg 2<br>
-                91601 Dombühl, Germany<br>
+                91601 Domb&uuml;hl, Germany<br>
                 Email: youhold@gmx.de
             </p>
 
@@ -208,23 +208,23 @@
             <p>Login is handled via Supabase Auth using email and password. Passwords are hashed by Supabase and are not accessible in plain text by the app operator or Supabase.</p>
 
             <h2>6. Biometric Data</h2>
-            <p>YouHold optionally offers biometric lock (Face ID / Touch ID). Biometric data is processed and stored exclusively on your device – it is never transmitted to servers. The app only checks via the operating system whether biometric authentication was successful.</p>
+            <p>YouHold optionally offers biometric lock (Face ID / Touch ID). Biometric data is processed and stored exclusively on your device &ndash; it is never transmitted to servers. The app only checks via the operating system whether biometric authentication was successful.</p>
 
             <h2>7. Data Sharing with Third Parties</h2>
             <p>Your data is not sold or shared with third parties for advertising purposes. Data is only shared with:</p>
             <ul>
-                <li><strong>Supabase Inc.</strong> – as a data processor for data storage and authentication (servers in the EU)</li>
+                <li><strong>Supabase Inc.</strong> &ndash; as a data processor for data storage and authentication (servers in the EU)</li>
             </ul>
 
             <h2>8. Your Rights (GDPR)</h2>
             <p>You have the following rights regarding your personal data:</p>
             <ul>
-                <li><strong>Access</strong> (Art. 15 GDPR) – You can request information about your stored data.</li>
-                <li><strong>Rectification</strong> (Art. 16 GDPR) – You can request correction of inaccurate data.</li>
-                <li><strong>Erasure</strong> (Art. 17 GDPR) – You can request deletion of your data.</li>
-                <li><strong>Restriction</strong> (Art. 18 GDPR) – You can request restriction of processing.</li>
-                <li><strong>Data Portability</strong> (Art. 20 GDPR) – You can receive your data in a common format (CSV export is available in the app).</li>
-                <li><strong>Objection</strong> (Art. 21 GDPR) – You can object to the processing of your data.</li>
+                <li><strong>Access</strong> (Art. 15 GDPR) &ndash; You can request information about your stored data.</li>
+                <li><strong>Rectification</strong> (Art. 16 GDPR) &ndash; You can request correction of inaccurate data.</li>
+                <li><strong>Erasure</strong> (Art. 17 GDPR) &ndash; You can request deletion of your data.</li>
+                <li><strong>Restriction</strong> (Art. 18 GDPR) &ndash; You can request restriction of processing.</li>
+                <li><strong>Data Portability</strong> (Art. 20 GDPR) &ndash; You can receive your data in a common format (CSV export is available in the app).</li>
+                <li><strong>Objection</strong> (Art. 21 GDPR) &ndash; You can object to the processing of your data.</li>
             </ul>
             <p>To exercise your rights, contact: youhold@gmx.de</p>
 
@@ -251,15 +251,247 @@
             <p>For questions about data privacy, contact us at:<br>
             youhold@gmx.de</p>
         </div>
+
+        <!-- ESPA&Ntilde;OL -->
+        <div class="section-es" id="section-es">
+            <h1>Pol&iacute;tica de Privacidad</h1>
+            <p class="updated">&Uacute;ltima actualizaci&oacute;n: 20 de febrero de 2026</p>
+
+            <h2>1. Responsable del tratamiento</h2>
+            <p>
+                Wolfgang Krieger<br>
+                Kirchbuckweg 2<br>
+                91601 Domb&uuml;hl, Alemania<br>
+                Correo electr&oacute;nico: youhold@gmx.de
+            </p>
+
+            <h2>2. Descripci&oacute;n general</h2>
+            <p>YouHold es una aplicaci&oacute;n de finanzas personales para iOS. Esta pol&iacute;tica de privacidad te informa sobre qu&eacute; datos se recopilan, c&oacute;mo se procesan y qu&eacute; derechos tienes.</p>
+
+            <h2>3. Qu&eacute; datos recopilamos</h2>
+
+            <h3>3.1 Datos de la cuenta</h3>
+            <p>Al registrarte, se almacenan tu direcci&oacute;n de correo electr&oacute;nico y una contrase&ntilde;a. Estos datos son necesarios para la autenticaci&oacute;n.</p>
+
+            <h3>3.2 Datos introducidos por el usuario</h3>
+            <ul>
+                <li>Activos y pasivos (nombre, valor, tipo)</li>
+                <li>Transacciones (t&iacute;tulo, importe, categor&iacute;a, fecha)</li>
+                <li>Transacciones recurrentes (t&iacute;tulo, importe, intervalo)</li>
+                <li>Presupuestos (categor&iacute;a, l&iacute;mite mensual)</li>
+                <li>Categor&iacute;as personalizadas y tipos de activos</li>
+                <li>Historial de patrimonio neto (valores diarios)</li>
+            </ul>
+
+            <h3>3.3 Datos t&eacute;cnicos</h3>
+            <p>La aplicaci&oacute;n almacena los siguientes datos localmente en tu dispositivo:</p>
+            <ul>
+                <li>Preferencia de idioma</li>
+                <li>Preferencia de moneda</li>
+                <li>Preferencia de modo oscuro/claro</li>
+                <li>Configuraci&oacute;n biom&eacute;trica (activada/desactivada)</li>
+                <li>Estado de incorporaci&oacute;n</li>
+            </ul>
+
+            <h3>3.4 Datos que NO recopilamos</h3>
+            <ul>
+                <li>Sin datos de ubicaci&oacute;n</li>
+                <li>Sin contactos</li>
+                <li>Sin identificadores publicitarios ni rastreo</li>
+                <li>Sin servicios de an&aacute;lisis ni de informes de errores</li>
+                <li>Sin datos compartidos con terceros con fines publicitarios</li>
+            </ul>
+
+            <h2>4. C&oacute;mo y d&oacute;nde se almacenan los datos</h2>
+            <p>Tus datos se almacenan en servidores operados por <strong>Supabase</strong> (Supabase Inc., EE.&nbsp;UU.). El proyecto de Supabase para YouHold est&aacute; alojado en la <strong>UE (Par&iacute;s, Francia)</strong>. Tus datos no salen del Espacio Econ&oacute;mico Europeo.</p>
+            <p>Supabase utiliza bases de datos PostgreSQL con Row Level Security (RLS), lo que garantiza que cada usuario solo pueda acceder a sus propios datos.</p>
+            <p>M&aacute;s informaci&oacute;n sobre la seguridad de datos de Supabase: <a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></p>
+
+            <h2>5. Autenticaci&oacute;n</h2>
+            <p>El inicio de sesi&oacute;n se gestiona a trav&eacute;s de Supabase Auth mediante correo electr&oacute;nico y contrase&ntilde;a. Las contrase&ntilde;as son cifradas (hash) por Supabase y no son accesibles en texto plano ni por el operador de la aplicaci&oacute;n ni por Supabase.</p>
+
+            <h2>6. Datos biom&eacute;tricos</h2>
+            <p>YouHold ofrece opcionalmente un bloqueo biom&eacute;trico (Face ID / Touch ID). Los datos biom&eacute;tricos se procesan y almacenan exclusivamente en tu dispositivo &ndash; nunca se transmiten a servidores. La aplicaci&oacute;n solo verifica a trav&eacute;s del sistema operativo si la autenticaci&oacute;n biom&eacute;trica fue exitosa.</p>
+
+            <h2>7. Intercambio de datos con terceros</h2>
+            <p>Tus datos no se venden ni se comparten con terceros con fines publicitarios. Los datos solo se comparten con:</p>
+            <ul>
+                <li><strong>Supabase Inc.</strong> &ndash; como encargado del tratamiento para el almacenamiento de datos y la autenticaci&oacute;n (servidores en la UE)</li>
+            </ul>
+
+            <h2>8. Tus derechos (RGPD)</h2>
+            <p>Tienes los siguientes derechos respecto a tus datos personales:</p>
+            <ul>
+                <li><strong>Acceso</strong> (Art. 15 RGPD) &ndash; Puedes solicitar informaci&oacute;n sobre tus datos almacenados.</li>
+                <li><strong>Rectificaci&oacute;n</strong> (Art. 16 RGPD) &ndash; Puedes solicitar la correcci&oacute;n de datos inexactos.</li>
+                <li><strong>Supresi&oacute;n</strong> (Art. 17 RGPD) &ndash; Puedes solicitar la eliminaci&oacute;n de tus datos.</li>
+                <li><strong>Limitaci&oacute;n</strong> (Art. 18 RGPD) &ndash; Puedes solicitar la limitaci&oacute;n del tratamiento.</li>
+                <li><strong>Portabilidad de datos</strong> (Art. 20 RGPD) &ndash; Puedes recibir tus datos en un formato com&uacute;n (la exportaci&oacute;n CSV est&aacute; disponible en la aplicaci&oacute;n).</li>
+                <li><strong>Oposici&oacute;n</strong> (Art. 21 RGPD) &ndash; Puedes oponerte al tratamiento de tus datos.</li>
+            </ul>
+            <p>Para ejercer tus derechos, contacta con: youhold@gmx.de</p>
+
+            <h2>9. Eliminaci&oacute;n de datos</h2>
+            <p>Puedes eliminar tus datos en cualquier momento:</p>
+            <ul>
+                <li>Entradas individuales: Directamente en la aplicaci&oacute;n (deslizar para eliminar)</li>
+                <li>Cuenta completa: Env&iacute;a un correo electr&oacute;nico a youhold@gmx.de. Tu cuenta y todos los datos asociados se eliminar&aacute;n completamente en un plazo de 30 d&iacute;as.</li>
+            </ul>
+
+            <h2>10. Seguridad de los datos</h2>
+            <p>Empleamos las siguientes medidas para proteger tus datos:</p>
+            <ul>
+                <li>Transmisi&oacute;n de datos cifrada (HTTPS/TLS)</li>
+                <li>Row Level Security (RLS) en la base de datos</li>
+                <li>Contrase&ntilde;as cifradas (hash)</li>
+                <li>Bloqueo biom&eacute;trico opcional de la aplicaci&oacute;n</li>
+            </ul>
+
+            <h2>11. Cambios</h2>
+            <p>Nos reservamos el derecho de actualizar esta pol&iacute;tica de privacidad seg&uacute;n sea necesario. Los cambios significativos se comunicar&aacute;n dentro de la aplicaci&oacute;n.</p>
+
+            <h2>12. Contacto</h2>
+            <p>Para preguntas sobre la privacidad de datos, cont&aacute;ctanos en:<br>
+            youhold@gmx.de</p>
+        </div>
+
+        <!-- FRAN&Ccedil;AIS -->
+        <div class="section-fr" id="section-fr">
+            <h1>Politique de Confidentialit&eacute;</h1>
+            <p class="updated">Derni&egrave;re mise &agrave; jour : 20 f&eacute;vrier 2026</p>
+
+            <h2>1. Responsable du traitement</h2>
+            <p>
+                Wolfgang Krieger<br>
+                Kirchbuckweg 2<br>
+                91601 Domb&uuml;hl, Allemagne<br>
+                E-mail : youhold@gmx.de
+            </p>
+
+            <h2>2. Aper&ccedil;u</h2>
+            <p>YouHold est une application de finances personnelles pour iOS. Cette politique de confidentialit&eacute; vous informe sur les donn&eacute;es collect&eacute;es, la mani&egrave;re dont elles sont trait&eacute;es et les droits dont vous disposez.</p>
+
+            <h2>3. Quelles donn&eacute;es nous collectons</h2>
+
+            <h3>3.1 Donn&eacute;es du compte</h3>
+            <p>Lors de l'inscription, votre adresse e-mail et un mot de passe sont enregistr&eacute;s. Ces donn&eacute;es sont n&eacute;cessaires pour l'authentification.</p>
+
+            <h3>3.2 Donn&eacute;es saisies par l'utilisateur</h3>
+            <ul>
+                <li>Actifs et passifs (nom, valeur, type)</li>
+                <li>Transactions (titre, montant, cat&eacute;gorie, date)</li>
+                <li>Transactions r&eacute;currentes (titre, montant, intervalle)</li>
+                <li>Budgets (cat&eacute;gorie, limite mensuelle)</li>
+                <li>Cat&eacute;gories personnalis&eacute;es et types d'actifs</li>
+                <li>Historique du patrimoine net (valeurs quotidiennes)</li>
+            </ul>
+
+            <h3>3.3 Donn&eacute;es techniques</h3>
+            <p>L'application stocke les donn&eacute;es suivantes localement sur votre appareil :</p>
+            <ul>
+                <li>Pr&eacute;f&eacute;rence de langue</li>
+                <li>Pr&eacute;f&eacute;rence de devise</li>
+                <li>Pr&eacute;f&eacute;rence de mode sombre/clair</li>
+                <li>Param&egrave;tre biom&eacute;trique (activ&eacute;/d&eacute;sactiv&eacute;)</li>
+                <li>Statut d'int&eacute;gration</li>
+            </ul>
+
+            <h3>3.4 Donn&eacute;es que nous ne collectons PAS</h3>
+            <ul>
+                <li>Aucune donn&eacute;e de localisation</li>
+                <li>Aucun contact</li>
+                <li>Aucun identifiant publicitaire ni suivi</li>
+                <li>Aucun service d'analyse ni de rapport d'erreurs</li>
+                <li>Aucune donn&eacute;e partag&eacute;e avec des tiers &agrave; des fins publicitaires</li>
+            </ul>
+
+            <h2>4. Comment et o&ugrave; les donn&eacute;es sont stock&eacute;es</h2>
+            <p>Vos donn&eacute;es sont stock&eacute;es sur des serveurs op&eacute;r&eacute;s par <strong>Supabase</strong> (Supabase Inc., &Eacute;tats-Unis). Le projet Supabase pour YouHold est h&eacute;berg&eacute; dans l'<strong>UE (Paris, France)</strong>. Vos donn&eacute;es ne quittent pas l'Espace &eacute;conomique europ&eacute;en.</p>
+            <p>Supabase utilise des bases de donn&eacute;es PostgreSQL avec Row Level Security (RLS), garantissant que chaque utilisateur ne peut acc&eacute;der qu'&agrave; ses propres donn&eacute;es.</p>
+            <p>Plus d'informations sur la s&eacute;curit&eacute; des donn&eacute;es de Supabase : <a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></p>
+
+            <h2>5. Authentification</h2>
+            <p>La connexion est g&eacute;r&eacute;e via Supabase Auth par e-mail et mot de passe. Les mots de passe sont hach&eacute;s par Supabase et ne sont accessibles en texte clair ni par l'op&eacute;rateur de l'application ni par Supabase.</p>
+
+            <h2>6. Donn&eacute;es biom&eacute;triques</h2>
+            <p>YouHold propose en option un verrouillage biom&eacute;trique (Face ID / Touch ID). Les donn&eacute;es biom&eacute;triques sont trait&eacute;es et stock&eacute;es exclusivement sur votre appareil &ndash; elles ne sont jamais transmises aux serveurs. L'application v&eacute;rifie uniquement via le syst&egrave;me d'exploitation si l'authentification biom&eacute;trique a r&eacute;ussi.</p>
+
+            <h2>7. Partage de donn&eacute;es avec des tiers</h2>
+            <p>Vos donn&eacute;es ne sont ni vendues ni partag&eacute;es avec des tiers &agrave; des fins publicitaires. Les donn&eacute;es ne sont partag&eacute;es qu'avec :</p>
+            <ul>
+                <li><strong>Supabase Inc.</strong> &ndash; en tant que sous-traitant pour le stockage des donn&eacute;es et l'authentification (serveurs dans l'UE)</li>
+            </ul>
+
+            <h2>8. Vos droits (RGPD)</h2>
+            <p>Vous disposez des droits suivants concernant vos donn&eacute;es personnelles :</p>
+            <ul>
+                <li><strong>Acc&egrave;s</strong> (Art. 15 RGPD) &ndash; Vous pouvez demander des informations sur vos donn&eacute;es stock&eacute;es.</li>
+                <li><strong>Rectification</strong> (Art. 16 RGPD) &ndash; Vous pouvez demander la correction de donn&eacute;es inexactes.</li>
+                <li><strong>Effacement</strong> (Art. 17 RGPD) &ndash; Vous pouvez demander la suppression de vos donn&eacute;es.</li>
+                <li><strong>Limitation</strong> (Art. 18 RGPD) &ndash; Vous pouvez demander la limitation du traitement.</li>
+                <li><strong>Portabilit&eacute; des donn&eacute;es</strong> (Art. 20 RGPD) &ndash; Vous pouvez recevoir vos donn&eacute;es dans un format courant (l'export CSV est disponible dans l'application).</li>
+                <li><strong>Opposition</strong> (Art. 21 RGPD) &ndash; Vous pouvez vous opposer au traitement de vos donn&eacute;es.</li>
+            </ul>
+            <p>Pour exercer vos droits, contactez : youhold@gmx.de</p>
+
+            <h2>9. Suppression des donn&eacute;es</h2>
+            <p>Vous pouvez supprimer vos donn&eacute;es &agrave; tout moment :</p>
+            <ul>
+                <li>Entr&eacute;es individuelles : Directement dans l'application (glisser pour supprimer)</li>
+                <li>Compte complet : Envoyez un e-mail &agrave; youhold@gmx.de. Votre compte et toutes les donn&eacute;es associ&eacute;es seront enti&egrave;rement supprim&eacute;s dans un d&eacute;lai de 30 jours.</li>
+            </ul>
+
+            <h2>10. S&eacute;curit&eacute; des donn&eacute;es</h2>
+            <p>Nous employons les mesures suivantes pour prot&eacute;ger vos donn&eacute;es :</p>
+            <ul>
+                <li>Transmission de donn&eacute;es chiffr&eacute;e (HTTPS/TLS)</li>
+                <li>Row Level Security (RLS) dans la base de donn&eacute;es</li>
+                <li>Mots de passe hach&eacute;s</li>
+                <li>Verrouillage biom&eacute;trique optionnel de l'application</li>
+            </ul>
+
+            <h2>11. Modifications</h2>
+            <p>Nous nous r&eacute;servons le droit de mettre &agrave; jour cette politique de confidentialit&eacute; si n&eacute;cessaire. Les modifications importantes seront communiqu&eacute;es au sein de l'application.</p>
+
+            <h2>12. Contact</h2>
+            <p>Pour toute question relative &agrave; la protection des donn&eacute;es, contactez-nous &agrave; :<br>
+            youhold@gmx.de</p>
+        </div>
     </div>
 
     <script>
+        var backLabels = {
+            de: '\u2190 Zur\u00fcck zu YouHold',
+            en: '\u2190 Back to YouHold',
+            es: '\u2190 Volver a YouHold',
+            fr: '\u2190 Retour \u00e0 YouHold'
+        };
+        var langs = ['de', 'en', 'es', 'fr'];
+
         function switchLang(lang) {
-            document.getElementById('section-de').classList.toggle('active', lang === 'de');
-            document.getElementById('section-en').classList.toggle('active', lang === 'en');
-            document.getElementById('btn-de').classList.toggle('active', lang === 'de');
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            if (langs.indexOf(lang) === -1) lang = 'de';
+            langs.forEach(function(l) {
+                document.getElementById('section-' + l).classList.toggle('active', l === lang);
+                document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+            });
+            document.getElementById('back-link').textContent = backLabels[lang];
+            document.documentElement.lang = lang;
+            try { localStorage.setItem('youhold-lang', lang); } catch(e) {}
         }
+
+        (function() {
+            var lang = null;
+            try { lang = localStorage.getItem('youhold-lang'); } catch(e) {}
+            if (!lang) {
+                var browserLang = (navigator.language || navigator.userLanguage || 'de').toLowerCase().slice(0, 2);
+                if (langs.indexOf(browserLang) !== -1) {
+                    lang = browserLang;
+                } else {
+                    lang = 'de';
+                }
+            }
+            switchLang(lang);
+        })();
     </script>
 </body>
 </html>

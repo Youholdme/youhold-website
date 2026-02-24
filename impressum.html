@@ -25,37 +25,181 @@
         a { color: #2979FF; text-decoration: none; }
         a:hover { text-decoration: underline; }
         .back-link { display: inline-block; margin-bottom: 20px; font-size: 14px; }
+        .lang-switcher { display: flex; gap: 6px; align-items: center; justify-content: center; margin: 20px 0; }
+        .lang-btn { background: none; border: 1px solid transparent; cursor: pointer; font-size: 22px; padding: 4px 8px; border-radius: 6px; opacity: 0.5; transition: all 0.2s; line-height: 1; }
+        .lang-btn.active { opacity: 1; border-color: rgba(255,255,255,0.2); }
+        .lang-btn:hover { opacity: 1; }
+        .law-note { font-size: 13px; color: #999; font-style: italic; margin-bottom: 16px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="/" class="back-link">← Zurück zu YouHold</a>
+        <a href="/" class="back-link" data-i18n="backLink"></a>
 
-        <h1>Impressum</h1>
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="de" title="Deutsch">&#127465;&#127466;</button>
+            <button class="lang-btn" data-lang="en" title="English">&#127468;&#127463;</button>
+            <button class="lang-btn" data-lang="es" title="Espa&ntilde;ol">&#127466;&#127480;</button>
+            <button class="lang-btn" data-lang="fr" title="Fran&ccedil;ais">&#127467;&#127479;</button>
+        </div>
 
-        <h2>Angaben gemäß § 5 TMG</h2>
+        <h1 data-i18n="title"></h1>
+
+        <p class="law-note" data-i18n="lawNote"></p>
+
+        <h2 data-i18n="infoHeading"></h2>
         <p>
             Wolfgang Krieger<br>
             Kirchbuckweg 2<br>
-            91601 Dombühl
+            91601 Domb&uuml;hl
         </p>
 
-        <h2>Kontakt</h2>
-        <p>E-Mail: youhold@gmx.de</p>
+        <h2 data-i18n="contactHeading"></h2>
+        <p><span data-i18n="emailLabel"></span> youhold@gmx.de</p>
 
-        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+        <h2 data-i18n="responsibleHeading"></h2>
         <p>
             Wolfgang Krieger<br>
             Kirchbuckweg 2<br>
-            91601 Dombühl
+            91601 Domb&uuml;hl
         </p>
 
-        <h2>EU-Streitschlichtung</h2>
-        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a></p>
-        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        <h2 data-i18n="disputeHeading"></h2>
+        <p data-i18n-html="disputeText1"></p>
+        <p data-i18n="disputeText2"></p>
 
-        <h2>Haftungsausschluss</h2>
-        <p>Die in der App YouHold dargestellten Informationen dienen ausschließlich der persönlichen Finanzverwaltung und stellen keine Finanz-, Anlage- oder Steuerberatung dar. Für die Richtigkeit, Vollständigkeit und Aktualität der vom Nutzer eingegebenen Daten übernehmen wir keine Gewähr.</p>
+        <h2 data-i18n="disclaimerHeading"></h2>
+        <p data-i18n="disclaimerText"></p>
     </div>
+
+    <script>
+        const translations = {
+            de: {
+                backLink: '\u2190 Zur\u00fcck zu YouHold',
+                title: 'Impressum',
+                lawNote: '',
+                infoHeading: 'Angaben gem\u00e4\u00df \u00a7 5 TMG',
+                contactHeading: 'Kontakt',
+                emailLabel: 'E-Mail:',
+                responsibleHeading: 'Verantwortlich f\u00fcr den Inhalt nach \u00a7 18 Abs. 2 MStV',
+                disputeHeading: 'EU-Streitschlichtung',
+                disputeText1: 'Die Europ\u00e4ische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a>',
+                disputeText2: 'Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+                disclaimerHeading: 'Haftungsausschluss',
+                disclaimerText: 'Die in der App YouHold dargestellten Informationen dienen ausschlie\u00dflich der pers\u00f6nlichen Finanzverwaltung und stellen keine Finanz-, Anlage- oder Steuerberatung dar. F\u00fcr die Richtigkeit, Vollst\u00e4ndigkeit und Aktualit\u00e4t der vom Nutzer eingegebenen Daten \u00fcbernehmen wir keine Gew\u00e4hr.'
+            },
+            en: {
+                backLink: '\u2190 Back to YouHold',
+                title: 'Legal Notice',
+                lawNote: 'Legal notice according to German law',
+                infoHeading: 'Information according to \u00a7 5 TMG (German Telemedia Act)',
+                contactHeading: 'Contact',
+                emailLabel: 'E-Mail:',
+                responsibleHeading: 'Responsible for content according to \u00a7 18 Abs. 2 MStV (German Interstate Media Treaty)',
+                disputeHeading: 'EU Dispute Resolution',
+                disputeText1: 'The European Commission provides a platform for online dispute resolution (ODR): <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a>',
+                disputeText2: 'We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
+                disclaimerHeading: 'Disclaimer',
+                disclaimerText: 'The information displayed in the YouHold app is intended solely for personal financial management and does not constitute financial, investment, or tax advice. We assume no liability for the accuracy, completeness, or timeliness of data entered by the user.'
+            },
+            es: {
+                backLink: '\u2190 Volver a YouHold',
+                title: 'Aviso Legal',
+                lawNote: 'Aviso legal seg\u00fan la ley alemana',
+                infoHeading: 'Informaci\u00f3n seg\u00fan \u00a7 5 TMG (Ley alemana de telemedios)',
+                contactHeading: 'Contacto',
+                emailLabel: 'E-Mail:',
+                responsibleHeading: 'Responsable del contenido seg\u00fan \u00a7 18 Abs. 2 MStV (Tratado interestatal alem\u00e1n de medios)',
+                disputeHeading: 'Resoluci\u00f3n de Disputas de la UE',
+                disputeText1: 'La Comisi\u00f3n Europea proporciona una plataforma para la resoluci\u00f3n de disputas en l\u00ednea (RDL): <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a>',
+                disputeText2: 'No estamos dispuestos ni obligados a participar en procedimientos de resoluci\u00f3n de disputas ante una junta de arbitraje de consumidores.',
+                disclaimerHeading: 'Descargo de Responsabilidad',
+                disclaimerText: 'La informaci\u00f3n mostrada en la aplicaci\u00f3n YouHold est\u00e1 destinada exclusivamente a la gesti\u00f3n financiera personal y no constituye asesoramiento financiero, de inversi\u00f3n ni fiscal. No asumimos ninguna responsabilidad por la exactitud, integridad o actualidad de los datos introducidos por el usuario.'
+            },
+            fr: {
+                backLink: '\u2190 Retour \u00e0 YouHold',
+                title: 'Mentions L\u00e9gales',
+                lawNote: 'Mentions l\u00e9gales selon le droit allemand',
+                infoHeading: 'Informations conform\u00e9ment au \u00a7 5 TMG (Loi allemande sur les t\u00e9l\u00e9m\u00e9dias)',
+                contactHeading: 'Contact',
+                emailLabel: 'E-Mail\u00a0:',
+                responsibleHeading: 'Responsable du contenu conform\u00e9ment au \u00a7 18 al. 2 MStV (Trait\u00e9 inter\u00e9tatique allemand sur les m\u00e9dias)',
+                disputeHeading: 'R\u00e8glement des litiges de l\u2019UE',
+                disputeText1: 'La Commission europ\u00e9enne met \u00e0 disposition une plateforme de r\u00e8glement en ligne des litiges (RLL)\u00a0: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a>',
+                disputeText2: 'Nous ne sommes ni dispos\u00e9s ni tenus de participer \u00e0 des proc\u00e9dures de r\u00e8glement des litiges devant un organisme de m\u00e9diation pour les consommateurs.',
+                disclaimerHeading: 'Clause de non-responsabilit\u00e9',
+                disclaimerText: 'Les informations affich\u00e9es dans l\u2019application YouHold sont destin\u00e9es exclusivement \u00e0 la gestion financi\u00e8re personnelle et ne constituent pas des conseils financiers, d\u2019investissement ou fiscaux. Nous n\u2019assumons aucune responsabilit\u00e9 quant \u00e0 l\u2019exactitude, l\u2019exhaustivit\u00e9 ou l\u2019actualit\u00e9 des donn\u00e9es saisies par l\u2019utilisateur.'
+            }
+        };
+
+        const titleMap = {
+            de: 'YouHold \u2013 Impressum',
+            en: 'YouHold \u2013 Legal Notice',
+            es: 'YouHold \u2013 Aviso Legal',
+            fr: 'YouHold \u2013 Mentions L\u00e9gales'
+        };
+
+        function setLanguage(lang) {
+            if (!translations[lang]) lang = 'de';
+            const t = translations[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-html');
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            // Show/hide law note for non-German languages
+            var lawNoteEl = document.querySelector('[data-i18n="lawNote"]');
+            if (lawNoteEl) {
+                lawNoteEl.style.display = (lang === 'de') ? 'none' : 'block';
+            }
+
+            // Update page title and lang attribute
+            document.title = titleMap[lang] || titleMap['de'];
+            document.documentElement.lang = lang;
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Persist choice
+            try { localStorage.setItem('youhold-lang', lang); } catch(e) {}
+        }
+
+        function detectLanguage() {
+            // 1. Check localStorage
+            try {
+                var saved = localStorage.getItem('youhold-lang');
+                if (saved && translations[saved]) return saved;
+            } catch(e) {}
+
+            // 2. Check browser language
+            var browserLang = (navigator.language || navigator.userLanguage || 'de').substring(0, 2).toLowerCase();
+            if (translations[browserLang]) return browserLang;
+
+            // 3. Default to German
+            return 'de';
+        }
+
+        // Bind click events
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                setLanguage(this.getAttribute('data-lang'));
+            });
+        });
+
+        // Initialize
+        setLanguage(detectLanguage());
+    </script>
 </body>
 </html>

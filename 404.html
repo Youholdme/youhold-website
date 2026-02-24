@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouHold – Seite nicht gefunden</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -30,7 +33,7 @@
         }
         h1 { font-size: 24px; margin-bottom: 12px; }
         p { color: #8888A0; font-size: 16px; margin-bottom: 32px; line-height: 1.6; }
-        a {
+        .btn {
             display: inline-block;
             background: #2979FF;
             color: white;
@@ -40,15 +43,48 @@
             font-weight: 600;
             transition: all 0.2s;
         }
-        a:hover { background: #448AFF; transform: translateY(-2px); }
+        .btn:hover { background: #448AFF; transform: translateY(-2px); }
+        .lang-switcher { display: flex; gap: 6px; align-items: center; justify-content: center; margin-top: 40px; }
+        .lang-btn { background: none; border: 1px solid transparent; cursor: pointer; font-size: 20px; padding: 3px 6px; border-radius: 4px; opacity: 0.5; transition: all 0.2s; line-height: 1; }
+        .lang-btn.active { opacity: 1; border-color: rgba(255,255,255,0.15); }
+        .lang-btn:hover { opacity: 1; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="code">404</div>
-        <h1>Seite nicht gefunden</h1>
-        <p>Die gesuchte Seite existiert nicht oder wurde verschoben.</p>
-        <a href="/">Zur Startseite</a>
+        <h1 data-i18n="heading">Seite nicht gefunden</h1>
+        <p data-i18n="message">Die gesuchte Seite existiert nicht oder wurde verschoben.</p>
+        <a href="/" class="btn" data-i18n="button">Zur Startseite</a>
+        <div class="lang-switcher">
+            <button class="lang-btn" onclick="switchLang('de')" title="Deutsch">🇩🇪</button>
+            <button class="lang-btn" onclick="switchLang('en')" title="English">🇬🇧</button>
+            <button class="lang-btn" onclick="switchLang('es')" title="Español">🇪🇸</button>
+            <button class="lang-btn" onclick="switchLang('fr')" title="Français">🇫🇷</button>
+        </div>
     </div>
+    <script>
+    const t = {
+        de: { heading: "Seite nicht gefunden", message: "Die gesuchte Seite existiert nicht oder wurde verschoben.", button: "Zur Startseite" },
+        en: { heading: "Page not found", message: "The page you are looking for does not exist or has been moved.", button: "Go to homepage" },
+        es: { heading: "Página no encontrada", message: "La página que buscas no existe o ha sido movida.", button: "Ir al inicio" },
+        fr: { heading: "Page non trouvée", message: "La page que vous recherchez n'existe pas ou a été déplacée.", button: "Retour à l'accueil" }
+    };
+    function switchLang(lang) {
+        localStorage.setItem('youhold-lang', lang);
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[lang] && t[lang][key]) el.textContent = t[lang][key];
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
+        });
+    }
+    const saved = localStorage.getItem('youhold-lang');
+    const browser = (navigator.language || '').slice(0,2);
+    const supported = ['de','en','es','fr'];
+    switchLang(saved || (supported.includes(browser) ? browser : 'de'));
+    </script>
 </body>
 </html>

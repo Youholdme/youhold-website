@@ -516,6 +516,8 @@
             .balance-section { grid-template-columns: 1fr; }
             .multi-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; gap: 16px; text-align: center; }
+            .lang-switcher { margin-left: 4px; gap: 2px; }
+            .lang-btn { font-size: 16px; padding: 2px 3px; }
         }
 
         /* ── Hamburger for mobile ── */
@@ -523,6 +525,12 @@
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
         }
+
+        /* ── Language Switcher ── */
+        .lang-switcher { display: flex; gap: 4px; align-items: center; margin-left: 8px; }
+        .lang-btn { background: none; border: 1px solid transparent; cursor: pointer; font-size: 18px; padding: 2px 5px; border-radius: 4px; opacity: 0.5; transition: all 0.2s; line-height: 1; }
+        .lang-btn.active { opacity: 1; border-color: rgba(255,255,255,0.15); }
+        .lang-btn:hover { opacity: 1; }
     </style>
 </head>
 <body>
@@ -534,35 +542,41 @@
 <nav>
     <a href="/" class="nav-logo">You<span>Hold</span></a>
     <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#bilanz">Bilanz</a>
-        <a href="#global">Sprachen</a>
-        <a href="#download" class="nav-cta">Download</a>
+        <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#bilanz" data-i18n="nav_bilanz">Bilanz</a>
+        <a href="#global" data-i18n="nav_sprachen">Sprachen</a>
+        <a href="#download" class="nav-cta" data-i18n="nav_download">Download</a>
+    </div>
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="switchLang('de')" title="Deutsch">🇩🇪</button>
+        <button class="lang-btn" onclick="switchLang('en')" title="English">🇬🇧</button>
+        <button class="lang-btn" onclick="switchLang('es')" title="Español">🇪🇸</button>
+        <button class="lang-btn" onclick="switchLang('fr')" title="Français">🇫🇷</button>
     </div>
 </nav>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
     <div class="hero-content">
-        <div class="hero-badge">Jetzt verfügbar für iOS</div>
-        <h1>Dein Vermögen.<br><span class="gradient-text">Dein Überblick.</span></h1>
-        <p>Persönliche Bilanz, Cashflow-Tracking und Budget-Analyse – alles in einer App. Sicher, übersichtlich und in deiner Sprache.</p>
+        <div class="hero-badge" data-i18n="hero_badge">Jetzt verfügbar für iOS</div>
+        <h1><span data-i18n="hero_h1_1">Dein Vermögen.</span><br><span class="gradient-text" data-i18n="hero_h1_2">Dein Überblick.</span></h1>
+        <p data-i18n="hero_p">Persönliche Bilanz, Cashflow-Tracking und Budget-Analyse – alles in einer App. Sicher, übersichtlich und in deiner Sprache.</p>
         <a href="https://apps.apple.com/app/youhold/id6759396066" class="hero-cta">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            App Store
+            <span data-i18n="hero_cta">App Store</span>
         </a>
         <div class="hero-stats">
             <div class="hero-stat">
                 <div class="number">4</div>
-                <div class="label">Sprachen</div>
+                <div class="label" data-i18n="stat_languages">Sprachen</div>
             </div>
             <div class="hero-stat">
                 <div class="number">5</div>
-                <div class="label">Währungen</div>
+                <div class="label" data-i18n="stat_currencies">Währungen</div>
             </div>
             <div class="hero-stat">
                 <div class="number">∞</div>
-                <div class="label">Positionen</div>
+                <div class="label" data-i18n="stat_positions">Positionen</div>
             </div>
         </div>
     </div>
@@ -571,40 +585,40 @@
 <!-- ═══ FEATURES ═══ -->
 <section id="features">
     <div class="section-header fade-in">
-        <div class="section-label">Features</div>
-        <h2>Alles was du brauchst</h2>
-        <p>YouHold vereint Bilanz, Cashflow und Budget-Analyse in einer einzigen, übersichtlichen App.</p>
+        <div class="section-label" data-i18n="feat_label">Features</div>
+        <h2 data-i18n="feat_h2">Alles was du brauchst</h2>
+        <p data-i18n="feat_p">YouHold vereint Bilanz, Cashflow und Budget-Analyse in einer einzigen, übersichtlichen App.</p>
     </div>
     <div class="features-grid">
         <div class="feature-card fade-in">
             <div class="feature-icon" style="background: var(--green-soft);">📊</div>
-            <h3>Persönliche Bilanz</h3>
-            <p>T-Konto-Format mit drei Detailstufen. Eigenkapital, Fremdkapital und Bilanzsumme werden automatisch berechnet.</p>
+            <h3 data-i18n="feat1_h3">Persönliche Bilanz</h3>
+            <p data-i18n="feat1_p">T-Konto-Format mit drei Detailstufen. Eigenkapital, Fremdkapital und Bilanzsumme werden automatisch berechnet.</p>
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon" style="background: var(--blue-glow);">💸</div>
-            <h3>Cashflow-Tracking</h3>
-            <p>Einnahmen und Ausgaben tracken mit Zeitfiltern. Daueraufträge verwalten und wiederkehrende Zahlungen im Blick behalten.</p>
+            <h3 data-i18n="feat2_h3">Cashflow-Tracking</h3>
+            <p data-i18n="feat2_p">Einnahmen und Ausgaben tracken mit Zeitfiltern. Daueraufträge verwalten und wiederkehrende Zahlungen im Blick behalten.</p>
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon" style="background: var(--yellow-soft);">🎯</div>
-            <h3>Budget-Analyse</h3>
-            <p>Monatliche Budgets pro Kategorie setzen. Donut-Charts, Trendvergleiche und Fortschrittsbalken zeigen, wo du stehst.</p>
+            <h3 data-i18n="feat3_h3">Budget-Analyse</h3>
+            <p data-i18n="feat3_p">Monatliche Budgets pro Kategorie setzen. Donut-Charts, Trendvergleiche und Fortschrittsbalken zeigen, wo du stehst.</p>
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon" style="background: var(--red-soft);">📈</div>
-            <h3>Vermögensentwicklung</h3>
-            <p>Interaktive Charts zeigen die Wertentwicklung deiner Positionen und dein Nettovermögen über flexible Zeiträume.</p>
+            <h3 data-i18n="feat4_h3">Vermögensentwicklung</h3>
+            <p data-i18n="feat4_p">Interaktive Charts zeigen die Wertentwicklung deiner Positionen und dein Nettovermögen über flexible Zeiträume.</p>
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon" style="background: rgba(224, 64, 251, 0.12);">🔒</div>
-            <h3>Sicher & Privat</h3>
-            <p>Biometrische Sperre, verschlüsselte Datenübertragung und Row Level Security. Deine Finanzdaten gehören nur dir.</p>
+            <h3 data-i18n="feat5_h3">Sicher & Privat</h3>
+            <p data-i18n="feat5_p">Biometrische Sperre, verschlüsselte Datenübertragung und Row Level Security. Deine Finanzdaten gehören nur dir.</p>
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon" style="background: var(--green-soft);">📤</div>
-            <h3>CSV-Export</h3>
-            <p>Exportiere deine Transaktionen und Vermögenswerte als CSV-Datei – für Steuererklärung, Berater oder dein Archiv.</p>
+            <h3 data-i18n="feat6_h3">CSV-Export</h3>
+            <p data-i18n="feat6_p">Exportiere deine Transaktionen und Vermögenswerte als CSV-Datei – für Steuererklärung, Berater oder dein Archiv.</p>
         </div>
     </div>
 </section>
@@ -613,38 +627,38 @@
 <section id="bilanz" style="background: var(--bg-subtle);">
     <div class="balance-section">
         <div class="balance-text fade-in">
-            <div class="section-label">Herzstück</div>
-            <h2>Deine persönliche Bilanz</h2>
-            <p>Sieh dein Vermögen wie ein Profi – im T-Konto-Format mit drei Detailstufen. Von der Grobansicht bis zu jedem einzelnen Posten.</p>
+            <div class="section-label" data-i18n="bilanz_label">Herzstück</div>
+            <h2 data-i18n="bilanz_h2">Deine persönliche Bilanz</h2>
+            <p data-i18n="bilanz_p">Sieh dein Vermögen wie ein Profi – im T-Konto-Format mit drei Detailstufen. Von der Grobansicht bis zu jedem einzelnen Posten.</p>
             <ul class="balance-features">
-                <li><span class="check">✓</span> Grobansicht: Vermögen vs. Schulden auf einen Blick</li>
-                <li><span class="check">✓</span> Gruppenansicht: Aufgeteilt nach Asset-Typen</li>
-                <li><span class="check">✓</span> Detailansicht: Jede einzelne Position sichtbar</li>
-                <li><span class="check">✓</span> Eigenkapital wird automatisch berechnet</li>
+                <li><span class="check">✓</span> <span data-i18n="bilanz_li1">Grobansicht: Vermögen vs. Schulden auf einen Blick</span></li>
+                <li><span class="check">✓</span> <span data-i18n="bilanz_li2">Gruppenansicht: Aufgeteilt nach Asset-Typen</span></li>
+                <li><span class="check">✓</span> <span data-i18n="bilanz_li3">Detailansicht: Jede einzelne Position sichtbar</span></li>
+                <li><span class="check">✓</span> <span data-i18n="bilanz_li4">Eigenkapital wird automatisch berechnet</span></li>
             </ul>
         </div>
         <div class="tkonto-visual fade-in">
-            <div class="tkonto-header">Bilanz</div>
+            <div class="tkonto-header" data-i18n="tkonto_header">Bilanz</div>
             <div class="tkonto-grid">
                 <div class="tkonto-side tkonto-aktiva">
-                    <div class="tkonto-label">Aktiva</div>
-                    <div class="tkonto-row"><span>Immobilien</span><span>285.000 €</span></div>
-                    <div class="tkonto-row"><span>Aktien & ETFs</span><span>42.500 €</span></div>
-                    <div class="tkonto-row"><span>Krypto</span><span>8.200 €</span></div>
-                    <div class="tkonto-row"><span>Tagesgeld</span><span>15.000 €</span></div>
-                    <div class="tkonto-row total"><span>Summe</span><span>350.700 €</span></div>
+                    <div class="tkonto-label" data-i18n="tkonto_aktiva">Aktiva</div>
+                    <div class="tkonto-row"><span data-i18n="tkonto_immobilien">Immobilien</span><span>285.000 €</span></div>
+                    <div class="tkonto-row"><span data-i18n="tkonto_aktien">Aktien & ETFs</span><span>42.500 €</span></div>
+                    <div class="tkonto-row"><span data-i18n="tkonto_krypto">Krypto</span><span>8.200 €</span></div>
+                    <div class="tkonto-row"><span data-i18n="tkonto_tagesgeld">Tagesgeld</span><span>15.000 €</span></div>
+                    <div class="tkonto-row total"><span data-i18n="tkonto_summe">Summe</span><span>350.700 €</span></div>
                 </div>
                 <div class="tkonto-side tkonto-passiva">
-                    <div class="tkonto-label">Passiva</div>
-                    <div class="tkonto-row"><span>Hypothek</span><span>195.000 €</span></div>
-                    <div class="tkonto-row"><span>Autokredit</span><span>12.300 €</span></div>
+                    <div class="tkonto-label" data-i18n="tkonto_passiva">Passiva</div>
+                    <div class="tkonto-row"><span data-i18n="tkonto_hypothek">Hypothek</span><span>195.000 €</span></div>
+                    <div class="tkonto-row"><span data-i18n="tkonto_autokredit">Autokredit</span><span>12.300 €</span></div>
                     <div class="tkonto-row" style="height: 24px;"></div>
-                    <div class="tkonto-row tkonto-equity"><span>Eigenkapital</span><span>143.400 €</span></div>
-                    <div class="tkonto-row total"><span>Summe</span><span>350.700 €</span></div>
+                    <div class="tkonto-row tkonto-equity"><span data-i18n="tkonto_eigenkapital">Eigenkapital</span><span>143.400 €</span></div>
+                    <div class="tkonto-row total"><span data-i18n="tkonto_summe">Summe</span><span>350.700 €</span></div>
                 </div>
             </div>
             <div class="tkonto-net">
-                <div class="label">Nettovermögen</div>
+                <div class="label" data-i18n="tkonto_nettovermögen">Nettovermögen</div>
                 <div class="value">143.400 €</div>
             </div>
         </div>
@@ -654,13 +668,13 @@
 <!-- ═══ GLOBAL ═══ -->
 <section id="global">
     <div class="section-header fade-in">
-        <div class="section-label">Global</div>
-        <h2>Deine Sprache. Deine Währung.</h2>
-        <p>YouHold passt sich an – mit 4 Sprachen und 5 Währungen.</p>
+        <div class="section-label" data-i18n="global_label">Global</div>
+        <h2 data-i18n="global_h2">Deine Sprache. Deine Währung.</h2>
+        <p data-i18n="global_p">YouHold passt sich an – mit 4 Sprachen und 5 Währungen.</p>
     </div>
     <div class="multi-grid fade-in">
         <div class="multi-card">
-            <h3>🌍 Sprachen</h3>
+            <h3 data-i18n="global_sprachen">🌍 Sprachen</h3>
             <div class="pill-grid">
                 <span class="pill">🇩🇪 Deutsch</span>
                 <span class="pill">🇬🇧 English</span>
@@ -669,7 +683,7 @@
             </div>
         </div>
         <div class="multi-card">
-            <h3>💱 Währungen</h3>
+            <h3 data-i18n="global_waehrungen">💱 Währungen</h3>
             <div class="pill-grid">
                 <span class="pill">€ EUR</span>
                 <span class="pill">$ USD</span>
@@ -684,35 +698,305 @@
 <!-- ═══ CTA ═══ -->
 <section id="download" class="cta-section" style="background: var(--bg-subtle);">
     <div class="fade-in">
-        <h2>Bereit für den <span class="gradient-text">Überblick</span>?</h2>
-        <p>Lade YouHold kostenlos herunter und behalte dein Vermögen im Blick.</p>
+        <h2><span data-i18n="cta_h2_1">Bereit für den</span> <span class="gradient-text" data-i18n="cta_h2_2">Überblick</span><span data-i18n="cta_h2_3">?</span></h2>
+        <p data-i18n="cta_p">Lade YouHold kostenlos herunter und behalte dein Vermögen im Blick.</p>
         <a href="https://apps.apple.com/app/youhold/id6759396066" class="hero-cta">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            Im App Store laden
+            <span data-i18n="cta_btn">Im App Store laden</span>
         </a>
     </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-    <div class="footer-left">© 2026 YouHold. Alle Rechte vorbehalten.</div>
+    <div class="footer-left" data-i18n="footer_copy">© 2026 YouHold. Alle Rechte vorbehalten.</div>
     <div class="footer-links">
-        <a href="/privacy.html">Datenschutz</a>
-        <a href="/impressum.html">Impressum</a>
+        <a href="/privacy.html" data-i18n="footer_privacy">Datenschutz</a>
+        <a href="/impressum.html" data-i18n="footer_impressum">Impressum</a>
     </div>
 </footer>
 
-<!-- ═══ Scroll Animations ═══ -->
+<!-- ═══ Translations & Language Switcher ═══ -->
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
+const translations = {
+    de: {
+        nav_features: "Features",
+        nav_bilanz: "Bilanz",
+        nav_sprachen: "Sprachen",
+        nav_download: "Download",
+        hero_badge: "Jetzt verfügbar für iOS",
+        hero_h1_1: "Dein Vermögen.",
+        hero_h1_2: "Dein Überblick.",
+        hero_p: "Persönliche Bilanz, Cashflow-Tracking und Budget-Analyse – alles in einer App. Sicher, übersichtlich und in deiner Sprache.",
+        hero_cta: "App Store",
+        stat_languages: "Sprachen",
+        stat_currencies: "Währungen",
+        stat_positions: "Positionen",
+        feat_label: "Features",
+        feat_h2: "Alles was du brauchst",
+        feat_p: "YouHold vereint Bilanz, Cashflow und Budget-Analyse in einer einzigen, übersichtlichen App.",
+        feat1_h3: "Persönliche Bilanz",
+        feat1_p: "T-Konto-Format mit drei Detailstufen. Eigenkapital, Fremdkapital und Bilanzsumme werden automatisch berechnet.",
+        feat2_h3: "Cashflow-Tracking",
+        feat2_p: "Einnahmen und Ausgaben tracken mit Zeitfiltern. Daueraufträge verwalten und wiederkehrende Zahlungen im Blick behalten.",
+        feat3_h3: "Budget-Analyse",
+        feat3_p: "Monatliche Budgets pro Kategorie setzen. Donut-Charts, Trendvergleiche und Fortschrittsbalken zeigen, wo du stehst.",
+        feat4_h3: "Vermögensentwicklung",
+        feat4_p: "Interaktive Charts zeigen die Wertentwicklung deiner Positionen und dein Nettovermögen über flexible Zeiträume.",
+        feat5_h3: "Sicher & Privat",
+        feat5_p: "Biometrische Sperre, verschlüsselte Datenübertragung und Row Level Security. Deine Finanzdaten gehören nur dir.",
+        feat6_h3: "CSV-Export",
+        feat6_p: "Exportiere deine Transaktionen und Vermögenswerte als CSV-Datei – für Steuererklärung, Berater oder dein Archiv.",
+        bilanz_label: "Herzstück",
+        bilanz_h2: "Deine persönliche Bilanz",
+        bilanz_p: "Sieh dein Vermögen wie ein Profi – im T-Konto-Format mit drei Detailstufen. Von der Grobansicht bis zu jedem einzelnen Posten.",
+        bilanz_li1: "Grobansicht: Vermögen vs. Schulden auf einen Blick",
+        bilanz_li2: "Gruppenansicht: Aufgeteilt nach Asset-Typen",
+        bilanz_li3: "Detailansicht: Jede einzelne Position sichtbar",
+        bilanz_li4: "Eigenkapital wird automatisch berechnet",
+        tkonto_header: "Bilanz",
+        tkonto_aktiva: "Aktiva",
+        tkonto_passiva: "Passiva",
+        tkonto_immobilien: "Immobilien",
+        tkonto_aktien: "Aktien & ETFs",
+        tkonto_krypto: "Krypto",
+        tkonto_tagesgeld: "Tagesgeld",
+        tkonto_summe: "Summe",
+        tkonto_hypothek: "Hypothek",
+        tkonto_autokredit: "Autokredit",
+        tkonto_eigenkapital: "Eigenkapital",
+        "tkonto_nettovermögen": "Nettovermögen",
+        global_label: "Global",
+        global_h2: "Deine Sprache. Deine Währung.",
+        global_p: "YouHold passt sich an – mit 4 Sprachen und 5 Währungen.",
+        global_sprachen: "🌍 Sprachen",
+        global_waehrungen: "💱 Währungen",
+        cta_h2_1: "Bereit für den",
+        cta_h2_2: "Überblick",
+        cta_h2_3: "?",
+        cta_p: "Lade YouHold kostenlos herunter und behalte dein Vermögen im Blick.",
+        cta_btn: "Im App Store laden",
+        footer_copy: "© 2026 YouHold. Alle Rechte vorbehalten.",
+        footer_privacy: "Datenschutz",
+        footer_impressum: "Impressum"
+    },
+    en: {
+        nav_features: "Features",
+        nav_bilanz: "Balance",
+        nav_sprachen: "Languages",
+        nav_download: "Download",
+        hero_badge: "Now available for iOS",
+        hero_h1_1: "Your Wealth.",
+        hero_h1_2: "Your Overview.",
+        hero_p: "Personal balance sheet, cashflow tracking and budget analysis – all in one app. Secure, clear and in your language.",
+        hero_cta: "App Store",
+        stat_languages: "Languages",
+        stat_currencies: "Currencies",
+        stat_positions: "Positions",
+        feat_label: "Features",
+        feat_h2: "Everything you need",
+        feat_p: "YouHold combines balance sheet, cashflow and budget analysis in a single, clear app.",
+        feat1_h3: "Personal Balance Sheet",
+        feat1_p: "T-account format with three detail levels. Equity, liabilities and total assets are calculated automatically.",
+        feat2_h3: "Cashflow Tracking",
+        feat2_p: "Track income and expenses with time filters. Manage standing orders and keep recurring payments in view.",
+        feat3_h3: "Budget Analysis",
+        feat3_p: "Set monthly budgets per category. Donut charts, trend comparisons and progress bars show where you stand.",
+        feat4_h3: "Wealth Development",
+        feat4_p: "Interactive charts show the value development of your positions and your net worth over flexible time periods.",
+        feat5_h3: "Secure & Private",
+        feat5_p: "Biometric lock, encrypted data transfer and row level security. Your financial data belongs only to you.",
+        feat6_h3: "CSV Export",
+        feat6_p: "Export your transactions and assets as CSV file – for tax return, advisor or your archive.",
+        bilanz_label: "Core Feature",
+        bilanz_h2: "Your Personal Balance Sheet",
+        bilanz_p: "See your wealth like a pro – in T-account format with three detail levels. From overview to every single position.",
+        bilanz_li1: "Overview: Assets vs. debts at a glance",
+        bilanz_li2: "Group view: Divided by asset types",
+        bilanz_li3: "Detail view: Every single position visible",
+        bilanz_li4: "Equity is calculated automatically",
+        tkonto_header: "Balance",
+        tkonto_aktiva: "Assets",
+        tkonto_passiva: "Liabilities",
+        tkonto_immobilien: "Real Estate",
+        tkonto_aktien: "Stocks & ETFs",
+        tkonto_krypto: "Crypto",
+        tkonto_tagesgeld: "Savings",
+        tkonto_summe: "Total",
+        tkonto_hypothek: "Mortgage",
+        tkonto_autokredit: "Car Loan",
+        tkonto_eigenkapital: "Equity",
+        "tkonto_nettovermögen": "Net Worth",
+        global_label: "Global",
+        global_h2: "Your Language. Your Currency.",
+        global_p: "YouHold adapts – with 4 languages and 5 currencies.",
+        global_sprachen: "🌍 Languages",
+        global_waehrungen: "💱 Currencies",
+        cta_h2_1: "Ready for the",
+        cta_h2_2: "Overview",
+        cta_h2_3: "?",
+        cta_p: "Download YouHold for free and keep your wealth in view.",
+        cta_btn: "Download on App Store",
+        footer_copy: "© 2026 YouHold. All rights reserved.",
+        footer_privacy: "Privacy Policy",
+        footer_impressum: "Legal Notice"
+    },
+    es: {
+        nav_features: "Funciones",
+        nav_bilanz: "Balance",
+        nav_sprachen: "Idiomas",
+        nav_download: "Descargar",
+        hero_badge: "Ya disponible para iOS",
+        hero_h1_1: "Tu Patrimonio.",
+        hero_h1_2: "Tu Visión General.",
+        hero_p: "Balance personal, seguimiento de flujo de caja y análisis de presupuesto – todo en una app. Seguro, claro y en tu idioma.",
+        hero_cta: "App Store",
+        stat_languages: "Idiomas",
+        stat_currencies: "Monedas",
+        stat_positions: "Posiciones",
+        feat_label: "Funciones",
+        feat_h2: "Todo lo que necesitas",
+        feat_p: "YouHold combina balance, flujo de caja y análisis presupuestario en una sola app clara.",
+        feat1_h3: "Balance Personal",
+        feat1_p: "Formato de cuenta T con tres niveles de detalle. Capital, pasivos y activos totales se calculan automáticamente.",
+        feat2_h3: "Seguimiento de Flujo",
+        feat2_p: "Registra ingresos y gastos con filtros temporales. Gestiona domiciliaciones y controla pagos recurrentes.",
+        feat3_h3: "Análisis de Presupuesto",
+        feat3_p: "Establece presupuestos mensuales por categoría. Gráficos, comparaciones de tendencias y barras de progreso muestran tu situación.",
+        feat4_h3: "Evolución Patrimonial",
+        feat4_p: "Gráficos interactivos muestran la evolución de tus posiciones y tu patrimonio neto en períodos flexibles.",
+        feat5_h3: "Seguro y Privado",
+        feat5_p: "Bloqueo biométrico, transferencia de datos cifrada y seguridad a nivel de fila. Tus datos financieros solo te pertenecen a ti.",
+        feat6_h3: "Exportación CSV",
+        feat6_p: "Exporta tus transacciones y activos como archivo CSV – para declaración de impuestos, asesor o tu archivo.",
+        bilanz_label: "Característica Principal",
+        bilanz_h2: "Tu Balance Personal",
+        bilanz_p: "Ve tu patrimonio como un profesional – en formato de cuenta T con tres niveles de detalle. Desde la vista general hasta cada posición individual.",
+        bilanz_li1: "Vista general: Activos vs. deudas de un vistazo",
+        bilanz_li2: "Vista por grupos: Dividido por tipos de activos",
+        bilanz_li3: "Vista detallada: Cada posición individual visible",
+        bilanz_li4: "El capital se calcula automáticamente",
+        tkonto_header: "Balance",
+        tkonto_aktiva: "Activos",
+        tkonto_passiva: "Pasivos",
+        tkonto_immobilien: "Inmuebles",
+        tkonto_aktien: "Acciones y ETFs",
+        tkonto_krypto: "Cripto",
+        tkonto_tagesgeld: "Ahorros",
+        tkonto_summe: "Total",
+        tkonto_hypothek: "Hipoteca",
+        tkonto_autokredit: "Crédito Auto",
+        tkonto_eigenkapital: "Capital",
+        "tkonto_nettovermögen": "Patrimonio Neto",
+        global_label: "Global",
+        global_h2: "Tu Idioma. Tu Moneda.",
+        global_p: "YouHold se adapta – con 4 idiomas y 5 monedas.",
+        global_sprachen: "🌍 Idiomas",
+        global_waehrungen: "💱 Monedas",
+        cta_h2_1: "¿Listo para la",
+        cta_h2_2: "Visión General",
+        cta_h2_3: "?",
+        cta_p: "Descarga YouHold gratis y mantén tu patrimonio a la vista.",
+        cta_btn: "Descargar en App Store",
+        footer_copy: "© 2026 YouHold. Todos los derechos reservados.",
+        footer_privacy: "Privacidad",
+        footer_impressum: "Aviso Legal"
+    },
+    fr: {
+        nav_features: "Fonctionnalités",
+        nav_bilanz: "Bilan",
+        nav_sprachen: "Langues",
+        nav_download: "Télécharger",
+        hero_badge: "Disponible maintenant pour iOS",
+        hero_h1_1: "Ton Patrimoine.",
+        hero_h1_2: "Ton Aperçu.",
+        hero_p: "Bilan personnel, suivi de trésorerie et analyse budgétaire – tout dans une app. Sécurisé, clair et dans ta langue.",
+        hero_cta: "App Store",
+        stat_languages: "Langues",
+        stat_currencies: "Devises",
+        stat_positions: "Positions",
+        feat_label: "Fonctionnalités",
+        feat_h2: "Tout ce dont tu as besoin",
+        feat_p: "YouHold combine bilan, trésorerie et analyse budgétaire dans une seule app claire.",
+        feat1_h3: "Bilan Personnel",
+        feat1_p: "Format de compte en T avec trois niveaux de détail. Capitaux propres, dettes et total du bilan sont calculés automatiquement.",
+        feat2_h3: "Suivi de Trésorerie",
+        feat2_p: "Suis revenus et dépenses avec des filtres temporels. Gère les virements permanents et garde un œil sur les paiements récurrents.",
+        feat3_h3: "Analyse Budgétaire",
+        feat3_p: "Fixe des budgets mensuels par catégorie. Graphiques, comparaisons de tendances et barres de progression montrent où tu en es.",
+        feat4_h3: "Évolution du Patrimoine",
+        feat4_p: "Des graphiques interactifs montrent l'évolution de tes positions et ton patrimoine net sur des périodes flexibles.",
+        feat5_h3: "Sécurisé et Privé",
+        feat5_p: "Verrouillage biométrique, transfert de données chiffré et sécurité au niveau des lignes. Tes données financières n'appartiennent qu'à toi.",
+        feat6_h3: "Export CSV",
+        feat6_p: "Exporte tes transactions et actifs en fichier CSV – pour la déclaration fiscale, ton conseiller ou tes archives.",
+        bilanz_label: "Fonctionnalité Clé",
+        bilanz_h2: "Ton Bilan Personnel",
+        bilanz_p: "Vois ton patrimoine comme un pro – en format de compte en T avec trois niveaux de détail. De la vue d'ensemble à chaque position individuelle.",
+        bilanz_li1: "Vue d'ensemble : Actifs vs. dettes en un coup d'œil",
+        bilanz_li2: "Vue par groupes : Réparti par types d'actifs",
+        bilanz_li3: "Vue détaillée : Chaque position individuelle visible",
+        bilanz_li4: "Les capitaux propres sont calculés automatiquement",
+        tkonto_header: "Bilan",
+        tkonto_aktiva: "Actifs",
+        tkonto_passiva: "Passifs",
+        tkonto_immobilien: "Immobilier",
+        tkonto_aktien: "Actions & ETFs",
+        tkonto_krypto: "Crypto",
+        tkonto_tagesgeld: "Épargne",
+        tkonto_summe: "Total",
+        tkonto_hypothek: "Hypothèque",
+        tkonto_autokredit: "Crédit Auto",
+        tkonto_eigenkapital: "Capitaux Propres",
+        "tkonto_nettovermögen": "Patrimoine Net",
+        global_label: "Global",
+        global_h2: "Ta Langue. Ta Devise.",
+        global_p: "YouHold s'adapte – avec 4 langues et 5 devises.",
+        global_sprachen: "🌍 Langues",
+        global_waehrungen: "💱 Devises",
+        cta_h2_1: "Prêt pour l'",
+        cta_h2_2: "Aperçu",
+        cta_h2_3: " ?",
+        cta_p: "Télécharge YouHold gratuitement et garde ton patrimoine en vue.",
+        cta_btn: "Télécharger sur l'App Store",
+        footer_copy: "© 2026 YouHold. Tous droits réservés.",
+        footer_privacy: "Confidentialité",
+        footer_impressum: "Mentions Légales"
+    }
+};
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+function switchLang(lang) {
+    localStorage.setItem('youhold-lang', lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
+    });
+}
+
+// Scroll animations
+var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+});
+
+// Auto-detect language
+var saved = localStorage.getItem('youhold-lang');
+var browserLang = (navigator.language || '').slice(0, 2);
+var supported = ['de', 'en', 'es', 'fr'];
+switchLang(saved || (supported.includes(browserLang) ? browserLang : 'de'));
 </script>
 
 </body>
